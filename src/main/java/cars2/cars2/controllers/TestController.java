@@ -73,12 +73,15 @@ public class TestController {
     {
 
 
-        // Car car1 = carRepository.getById(1);
+        Car car1 = carRepository.getOne(1);
+        Client cl = clientRepository.getOne(3);
+        
+        car1.getClientCars().add(cl);
+        carRepository.save(car1);
 
-        // Client client = clientRepository.getById(3).addCar(car1);
 
-
-        // System.out.println(client);
+        System.out.println(car1);
+        System.out.println(cl);
 
         // clientRepository.save( client );
 
