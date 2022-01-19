@@ -32,8 +32,8 @@ public class Client extends AbstractPersistable<Integer>{
     @Column
     private String surname;
 
-    @ManyToMany(mappedBy="clients")
-    private List<Car> cars;
+    @ManyToMany(mappedBy="clientCars")
+    private List<Car> cars = new ArrayList<>();
 
     public Client(String name, String surname, List<Car> cars)
     {
@@ -41,9 +41,12 @@ public class Client extends AbstractPersistable<Integer>{
         this.surname = surname;
     }
 
-    public void setCars( List<Car> cars ) {
-        this.cars = cars;
+    public Client addCar(Car car) {
+        this.cars.add(car);
+        return this;
     }
+
+
 
 }
 

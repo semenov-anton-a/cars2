@@ -51,7 +51,7 @@ public class Car extends AbstractPersistable<Integer> {
     @JoinTable(name = "client_car", 
         joinColumns = @JoinColumn(name = "car_id"), 
         inverseJoinColumns = @JoinColumn(name = "client_id"))
-    private List<Client> clients = new ArrayList<>();
+    private List<Client> clientCars = new ArrayList<>();
 
 
     public Car(String vin, String brand, String model, String reg, String year, List<Client> clients) 
@@ -62,6 +62,5 @@ public class Car extends AbstractPersistable<Integer> {
         this.reg    = reg;
         this.year   = year;
     }
-
 
 }

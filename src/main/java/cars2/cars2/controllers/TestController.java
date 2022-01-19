@@ -1,9 +1,7 @@
 package cars2.cars2.controllers;
 
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import antlr.collections.List;
 import cars2.cars2.models.Car;
 import cars2.cars2.models.Client;
 import cars2.cars2.repo.CarRepository;
@@ -73,6 +72,17 @@ public class TestController {
     public String makeRelations()
     {
 
+
+        // Car car1 = carRepository.getById(1);
+
+        // Client client = clientRepository.getById(3).addCar(car1);
+
+
+        // System.out.println(client);
+
+        // clientRepository.save( client );
+
+
         // System.out.println("=>>>>>>>>   CAR");
         // System.out.println( carRepository.getById(  1  ) );
 
@@ -83,12 +93,12 @@ public class TestController {
         // clientRepository.getOne( 3 ).getCars().add(  carRepository.getOne( 1) ) ;
         
         
-        System.out.println( clientRepository.getById( 3 ) );
+        // System.out.println( clientRepository.getById( 3 ) );
         
-        Car cars = carRepository.getOne(2);
-        System.out.println(cars);
+        // Car cars = carRepository.getOne(2);
+        // System.out.println(cars);
 
-        clientRepository.getOne( 3 ).getCars().add( 0, cars );
+        // clientRepository.getOne( 3 ).addCar( carRepository.getOne( 2) );
 
         // clientRepository.getById( 3 ).setCars( cars ) ;
         // clientRepository.getById( 3 ).getCars().setCars(carRepository.getById( 2 ));
