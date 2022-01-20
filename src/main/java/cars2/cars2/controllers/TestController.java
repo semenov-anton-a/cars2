@@ -59,6 +59,23 @@ public class TestController {
 
     @GetMapping("/tests/showrel")
     public String showRelations() {
+
+        Car Ford = new Car( "vin1234", "Ford", "Mondeo", "FRD-000", "2011", new ArrayList<>());
+        Car Bmw = new Car( "vin6678", "BMW", "X5", "BMW-123", "2021", new ArrayList<>());
+        Car Lada = new Car( "vin6678", "Lada", "Calina", "SPB-78", "1986", new ArrayList<>());
+        Car Audi = new Car( "vin6678", "Audi", "TT", "ADI-100", "1992", new ArrayList<>());
+
+        carRepository.save(Ford);
+        carRepository.save(Bmw);
+        carRepository.save(Lada);
+        carRepository.save(Audi);
+
+        Client Anton = new Client( "Anton", "Semenov", new ArrayList<>() );
+        Client Ivan = new Client( "Ivan", "Petrov", new ArrayList<>() );
+        
+        clientRepository.save( Anton );
+        clientRepository.save( Ivan );
+
         return "/tests/showrel";
     }
 
@@ -99,7 +116,7 @@ public class TestController {
         
         // System.out.println(cars);
         
-        return "redirect:/tests/showrel";
+        return "redirect:/tests/makerel";
     }
 
 }

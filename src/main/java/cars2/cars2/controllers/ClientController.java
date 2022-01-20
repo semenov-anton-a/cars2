@@ -1,6 +1,7 @@
 package cars2.cars2.controllers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,23 +49,18 @@ public class ClientController
 
     @PostMapping( path = "/addclient/relations" )
     public String makeRelations( 
-        @RequestParam Long clientid,
+        @RequestParam int clientid,
         @RequestParam (value = "carids[]") List<Integer> carids ) 
     {
-        System.out.println("======RUN========");
+
+        Client client = clientRepository.getById( clientid );
+        Collection<Car> cars = carRepository.findAllById( carids );
         
-        // ArrayList<Car> cars = (ArrayList<Car>) carRepository.findAllById( carids );
-        // System.out.println( cars.get(0) );
-        
-        // Iterable<Car> cars = carRepository.findAllById( carids );
-        
-
-
-
-
-        System.out.println("===============");
-        // System.out.println( clientid );
-        // System.out.println( carids );
+        client.getClientCars().addAll(cars);
+        carRepository.saveAll(cars);
+     
         return "redirect:/addclient";
     }
+
+    
 }

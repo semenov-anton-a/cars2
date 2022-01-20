@@ -49,9 +49,9 @@ public class Car extends AbstractPersistable<Integer> {
 
     @ManyToMany
     @JoinTable(name = "client_car", 
-        joinColumns = @JoinColumn(name = "client_id"), 
-        inverseJoinColumns = @JoinColumn(name = "car_id"))
-    private List<Client> clientCars = new ArrayList<>();
+        joinColumns = @JoinColumn(name = "car_id"), 
+        inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private List<Client> carClients = new ArrayList<>();
 
 
     public Car(String vin, String brand, String model, String reg, String year, List<Client> clients) 
