@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head th:insert="blocks/htmlHead :: htmlHead"></head>
+<body>
+    <div class="container col-md-6">
+        <!-- NavMenu -->
+        <header th:insert="blocks/navmenu :: navmenu"></header>
+
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h5 class="text-center">Add Car</h5>
+                <form method="POST" th:action="@{/addcar}" th:object="${data}">
+
+                    <!-- VIN CODE -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">VIN Code:</span>
+                        <input type="text" name="vin" class="form-control" />
+                    </div>
+
+                    <!-- Car Brand & Model -->
+                    <div class="input-group mb-3 d-flex">
+                        <input type="text" name="brand" class="form-control me-1" placeholder="Car Brand">
+                        <input type="text" name="model" class="form-control ms-1" placeholder="Car Model">
+                    </div>
+
+                    <!-- Year of manufacture && REG Number-->
+                    <div class="input-group mb-3 d-flex">
+                        <input type="number" name="year" 
+                            class="form-control me-1" min="1940" max="2022" step="1"
+                            placeholder="Year of manufacture (1940-2022)">
+                        <input type="text" name="reg" class="form-control me-1" placeholder="REG Number">
+                    </div>                    
+                    <!-- SAVE -->
+                    <input type="submit" class="btn btn-primary mt-2" value="Add" />
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head th:insert="blocks/htmlHead :: htmlHead"></head>
+<body>
+    <div class="container col-md-6">
+        <!-- NavMenu -->
+        <header th:insert="blocks/navmenu :: navmenu"></header>
+        
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h5 class="text-center">Add Client</h5>
+                <form method="POST" th:action="@{/addclient}" th:object="${data}">
+                    <div class="input-group mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Fistname">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" name="surname" class="form-control" placeholder="Surname">
+                    </div>
+                    <input type="submit" class="btn btn-primary mt-2" value="Add" />
+                </form>
+            </div>
+
+
+        <!-- RELATIONSHIP CLIENT && CARs -->
+        <!-- <form method="POST" th:action="@{/addclient/relations}" th:object="${data}">
+            <div class="row mt-5">
+                <div class="input-group mb-3">
+                    <select class="form-select" name="clientid">
+                        <option value="0" disabled selected>Select Client</option>
+                        <option 
+                            th:each="clients : ${clients}" 
+                            th:text="${clients.firstname} + ' ' + ${clients.surname}"
+                            th:value="${clients.id}"></option>
+                    </select>
+                </div>
+    
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Select</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">RegNum</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">VINCode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cars : ${cars}">
+                            <td>
+                                <form>
+                                    <input type="hidden" name="carid" th:value=${cars.id}>
+                                    <input class="btn btn-sm btn-primary"
+                                    type="submit" value="Add"/>
+                                </form> 
+                            
+                                <input type="checkbox" name="carids[]" th:value=${cars.id}>
+                            </td>
+                            <td th:text="${cars.id}"></td>
+                            <td th:text="${cars.carReg}"></td>
+                            <td th:text="${cars.carBrand}"></td>
+                            <td th:text="${cars.carModel}"></td>
+                            <td th:text="${cars.carYear}"></td>
+                            <td th:text="${cars.vinCode}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-6 offset-3">
+                    <input type="submit" class="col-md-12 btn btn-primary mt-2" value="Save">
+                </div>
+            </div>
+            </form>
+        </div> -->
+
+    </div>
+</body>
+</html>
