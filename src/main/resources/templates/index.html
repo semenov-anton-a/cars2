@@ -6,7 +6,43 @@
         <!-- NavMenu -->
         <header th:insert="blocks/navmenu :: navmenu"></header>
         
-        <h1 class="text-center">SHOW  CARS</h1>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h5 class="text-center">Cars</h5>
+                <form method="POST" th:action="@{/fowners}">
+                    <select class="form-select" name="carID" aria-label="Default select example">
+                        <option disabled selected hidden>Select Car</option>
+                        <option value="1">Audi QWE-123</option>
+                        <option value="2">Ford ZXC-456</option>
+                        <option value="3">BMW RTY-555</option>
+                    </select>
+                    <input type="submit" class="btn btn-primary mt-2" value="Search"/>
+                </form>
+
+                <!-- Result -->
+                <div class="mt-5">
+                    <span>ID : </span><span th:text=${ownersList}></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="text-center">Owners</h5>
+                <form method="POST" th:action="@{/findcars}">
+                    <select class="form-select" name="clientid">
+                        <option value="0" disabled selected>Select Client</option>
+                        <option 
+                            th:each="clients : ${clients}" 
+                            th:text="${clients.name} + ' ' + ${clients.surname}"
+                            th:value="${clients.id}"></option>
+                    </select>
+                    <input type="submit" class="btn btn-primary mt-2" value="Search"/>
+                </form>
+
+                <!-- Result -->
+                <div class="mt-5">
+                  
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

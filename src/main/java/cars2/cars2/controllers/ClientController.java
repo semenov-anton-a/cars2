@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -31,8 +33,8 @@ public class ClientController
     public String getIndex( Model model )
     {
         model.addAttribute("title", "Add Client");
-        model.addAttribute("clients", clientRepository.findAll() );
         
+        model.addAttribute("clients", clientRepository.findAll() );
         model.addAttribute("cars", carRepository.findAll() );
         System.out.println("HELLo");
         return "addclient";
@@ -47,6 +49,7 @@ public class ClientController
         return "redirect:/addclient";
     }
 
+    @Transactional
     @PostMapping( path = "/addclient/relations" )
     public String makeRelations( 
         @RequestParam int clientid,

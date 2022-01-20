@@ -4,11 +4,13 @@ package cars2.cars2.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import cars2.cars2.models.Car;
@@ -27,6 +29,31 @@ public class TestController {
 
     @GetMapping("/tests")
     public String getTests() {
+        return "/tests/index";
+    }
+
+    
+    @GetMapping("/tests/getclientcar")
+    public String getclientcar( Model model ) {
+        
+        model.addAttribute("clients", clientRepository.findAll() );
+    
+        List<Client> clients = clientRepository.findAll();
+
+        List<Car> cars = (List<Car>) clients.get(0).getClientCars();
+
+        System.out.println(
+            cars
+        );
+
+
+        // Integer id = 4;
+        // // Client client = clientRepository;
+
+        // System.out.println( carRepository.join( clientRepository.getById(5) ) );
+
+        System.out.println( "hello" );
+
         return "/tests/index";
     }
 
