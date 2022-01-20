@@ -11,6 +11,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -32,21 +34,17 @@ public class Client extends AbstractPersistable<Integer>{
     @Column
     private String surname;
 
-    @ManyToMany(mappedBy="clientCars")
-    private List<Car> cars = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "client_car", 
+        joinColumns = @JoinColumn(name = "car_id"), 
+        inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private List<Car> carClients = new ArrayList<>();
 
     public Client(String name, String surname, List<Car> cars)
     {
         this.name = name;
         this.surname = surname;
     }
-
-    public Client addCar(Car car) {
-        this.cars.add(car);
-        return this;
-    }
-
-
 
 }
 
