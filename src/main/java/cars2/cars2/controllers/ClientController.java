@@ -2,6 +2,7 @@ package cars2.cars2.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +10,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import cars2.cars2.models.Client;
+import cars2.cars2.repo.CarRepository;
+import cars2.cars2.repo.ClientRepository;
 
 @Controller
 public class ClientController 
 {
+    @Autowired
+    private ClientRepository clientRepository;
+    
+    @Autowired
+    private CarRepository carRepository;
+
+
     @GetMapping("/addclient")
     public String getIndex( Model model )
     {
@@ -26,8 +36,7 @@ public class ClientController
         consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE } ) 
     public String addClient( Client data ) 
     {
-        System.out.println( data );
-        // System.out.println(data);
+        clientRepository.save( data );
         return "redirect:/addclient";
     }
 
