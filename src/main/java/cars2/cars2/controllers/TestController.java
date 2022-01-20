@@ -36,24 +36,39 @@ public class TestController {
     @GetMapping("/tests/getclientcar")
     public String getclientcar( Model model ) {
         
-        model.addAttribute("clients", clientRepository.findAll() );
-    
-        List<Client> clients = clientRepository.findAll();
+        // clientRepository.getById(5).getClientCars();
 
-        List<Car> cars = (List<Car>) clients.get(0).getClientCars();
-
-        System.out.println(
-            cars
-        );
+        
+        // clientRepository.mySort(  clientRepository.getById(5).getClientCars()  );
 
 
-        // Integer id = 4;
-        // // Client client = clientRepository;
+        // clientRepository.getById(5).getClientCars().get(0);
+        System.out.println(  );
+        
 
-        // System.out.println( carRepository.join( clientRepository.getById(5) ) );
+        /** ================ */
+        // Object[] list =  clientRepository.getById(5).getClientCars().toArray();
+        // System.out.println( list );
+        /** ================ */
 
-        System.out.println( "hello" );
+        // ArrayList list = new ArrayList<>();
 
+        System.out.println( "HELLo" );
+
+        // model.addAttribute("clients", clientRepository.findAll() );
+        
+        // Client client = clientRepository.getById(5);
+        
+        // client.getClientCars();     
+        // List<Car> cr = clientRepository.findByCarId(2);     
+        
+        // System.out.println( client );
+
+
+        // WORK IN DATA BASE
+        // Client client = clientRepository.getById(5);
+        // System.out.println( client.getClientCars() );
+        
         return "/tests/index";
     }
 
