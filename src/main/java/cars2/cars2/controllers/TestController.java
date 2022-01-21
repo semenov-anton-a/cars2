@@ -40,18 +40,29 @@ public class TestController {
 
         /** EXAMPLE 1 */
         // SHOW COUNT FROM DATABASE 
-        // System.out.println( clientRepository.getById(client_id).getClientCars().size() );
+        // System.out.println( clientRepository.getById(client_id).getClientCars().toString() );
         
 
         /** EXAMPLE 2 */
         // Object[] list =  clientRepository.getById(client_id).getClientCars().toArray();
         // System.out.println( list );
+        // System.out.println(Arrays.toString(list.toArray()));
+
+        List<Car> list = clientRepository.getById(client_id).getClientCars();
+        // System.out.println( list );
+
+        list.forEach( System.out::println );
+
+
+
         /** ================ */
 
         // WORK IN DATA BASE
         // Client client = clientRepository.getById(client_id);
         // System.out.println( client.getClientCars() );
         
+        // System.out.println("HELLO");
+
         return "/tests/index";
     }
 
