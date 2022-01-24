@@ -1,5 +1,7 @@
 package cars2.cars2.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +59,20 @@ public class MainController
 
         model.addAttribute( "carData", car );
         model.addAttribute( "clients", car.getCarClients() );
+        return this.getIndex( model );
+    }
+
+
+
+
+
+
+    @GetMapping("/showallcars")
+    public String getShowAllCars(Model model){
+
+        List<Car> carList = carRepository.findAll();
+        model.addAttribute( "carDataList", carList );
+
         return this.getIndex( model );
     }
 
