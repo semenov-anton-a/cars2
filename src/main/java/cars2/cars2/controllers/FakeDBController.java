@@ -26,7 +26,7 @@ public class FakeDBController {
     {
         this.makeCars();
         this.makeClients();
-        return "fakedb";
+        return "redirect:/";
     }
 
 
@@ -47,10 +47,7 @@ public class FakeDBController {
         cars.add( new Car( "vin3654", "Mazda", "RX 7", "MRX-777", "2005", null ));
 
         carRepository.saveAll(cars);
-
     }
-
-
 
     private void makeClients(){
         List<Client> clients = new ArrayList<Client>();

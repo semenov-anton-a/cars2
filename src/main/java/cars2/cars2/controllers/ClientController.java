@@ -66,9 +66,9 @@ public class ClientController
 
         Client client = clientRepository.getById( clientid );
         Collection<Car> cars = carRepository.findAllById( carids );
-        
+
         client.getClientCars().addAll(cars);
-        // carRepository.saveAll(cars);
+        carRepository.saveAll(cars);
      
         return "redirect:/addclient";
     }

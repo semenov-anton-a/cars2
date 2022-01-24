@@ -4,11 +4,16 @@
             <div class="card text-dark bg-light mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <!-- <p th:text="'Car ID : ' + ${carDataList.getId()}"></p> -->
                         <p th:text="'Car : ' + ${carDataList.getBrand()} + ' ' + ${carDataList.getModel()}"></p>
                         <p th:text="'Reg : ' + ${carDataList.getReg()}"></p>
                         <p th:text="'VinCode : ' + ${carDataList.getVin()}"></p>
                     </h5>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <a class="col-md-6 btn btn-sm btn-primary" th:href="'/findclients/'+${carDataList.getId()}">More Details</a>
+                        <span th:text="'ID : '+${carDataList.getId()}" class="col-md-6">ID</span>
+                    </div>
                 </div>
             </div>
         </div>

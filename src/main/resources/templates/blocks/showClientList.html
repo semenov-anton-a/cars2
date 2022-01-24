@@ -9,6 +9,9 @@
                         <p th:text="'Surname : ' + ${clientDataList.getSurname()}"></p>
                     </h5>
                 </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" th:href="'/findcars/'+${clientDataList.getId()}">More Details</a>
+                </div>
             </div>
         </div>
     </div>

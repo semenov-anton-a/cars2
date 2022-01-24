@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,6 +59,12 @@ public class MainController
         
         return this.getIndex( model );
     }
+    @GetMapping( path = "/findcars/{carid}")
+    public String getCarsByOwnerOd(Model model, @PathVariable int carid )
+    {
+        return this.getCarsByOwner(model, carid);
+    }
+
 
     @PostMapping( path = "/findclients")
     public String getClientsByCars(Model model, @RequestParam int carid )
@@ -74,6 +81,14 @@ public class MainController
         return this.getIndex( model );
     }
 
+    @GetMapping( path = "/findclients/{carid}")
+    public String getClientsByCarsId(Model model, @PathVariable int carid )
+    {
+        return this.getClientsByCars(model, carid);
+    }
+
+
+
     @GetMapping("/showallcars")
     public String getShowAllCars(Model model, @RequestParam(defaultValue = "0") Integer page){
         
@@ -81,7 +96,7 @@ public class MainController
         Page<Car> pageTable = carRepository.findAll( pageable );
         
         model.addAttribute( "carDataList", pageTable  );
-        
+
         int pageB = 0;
         pageB = ( pageTable.hasPrevious() ) ? page - 1 : -1 ;
         
@@ -93,8 +108,6 @@ public class MainController
 
         return this.showPaginations(model, true, "/showallcars").getIndex( model );
     }
-
-
 
     @GetMapping("/showallclients")
     public String getShowAllClients(Model model, @RequestParam(defaultValue = "0") Integer page){
