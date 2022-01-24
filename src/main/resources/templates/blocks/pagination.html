@@ -1,0 +1,4 @@
+<div class="col-md-12 text-center" th:fragment="pagination">
+    <a class="btn btn-primary" th:if="(${pageBack} != -1)" th:href="${paginationUri}+'?page='+${pageBack}">Back</a>
+    <a class="btn btn-primary" th:if="(${pageNext} != -1)" th:href="${paginationUri}+'?page='+${pageNext}">Next</a>
+</div>

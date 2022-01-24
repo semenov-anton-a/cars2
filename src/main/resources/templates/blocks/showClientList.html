@@ -1,0 +1,15 @@
+<div class="row" th:fragment="showClientList">
+    <div class="col-md-6" th:each="clientDataList : ${clientDataList}">
+        <div class="mt-3 col-md-12">
+            <div class="card text-dark bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <!-- <p th:text="'ID : ' + ${clientDataList.getId()}"></p> -->
+                        <p th:text="'Name : ' + ${clientDataList.getName() }"></p>
+                        <p th:text="'Surname : ' + ${clientDataList.getSurname()}"></p>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

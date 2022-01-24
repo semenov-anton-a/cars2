@@ -1,0 +1,16 @@
+<div class="row" th:fragment="showCarList">
+    <div class="col-md-6" th:each="carDataList : ${carDataList}" >
+        <div class="mt-3 col-md-12">
+            <div class="card text-dark bg-light mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <!-- <p th:text="'Car ID : ' + ${carDataList.getId()}"></p> -->
+                        <p th:text="'Car : ' + ${carDataList.getBrand()} + ' ' + ${carDataList.getModel()}"></p>
+                        <p th:text="'Reg : ' + ${carDataList.getReg()}"></p>
+                        <p th:text="'VinCode : ' + ${carDataList.getVin()}"></p>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -32,13 +32,28 @@
                             th:value="${selectClients.id}"></option>
                     </select>
                     <input type="submit" class="btn btn-primary mt-2" value="Search" />
+                    <a class="btn btn-primary mt-2" href="/showallclients">Show All cars</a>
                 </form>
             </div>
         </div>
 
         <div th:insert="blocks/carsListByClient :: carsListByClient"></div>
         <div th:insert="blocks/clientListByCar :: clientListByCar"></div>
-        <div th:insert="blocks/showallcars :: showallcars"></div>
+        
+        <div th:insert="blocks/showCarList :: showCarList"></div>
+        
+        <div th:insert="blocks/showClientList :: showClientList"></div>
+        
+        <!-- Pagination -->
+        <div th:if="(${pagination})" 
+            th:insert="blocks/pagination :: pagination"
+            th:value="${paginationUri}"></div>
+        <!-- Pagination END-->
+
+
+        <footer class="footer mt-5 h-100">
+            <p class="text-center">&copy;Anton Semenov 2022</p>
+        </footer>
 
 </body>
 

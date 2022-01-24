@@ -3,6 +3,10 @@ package cars2.cars2.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +26,14 @@ public class MainController
     
     @Autowired
     private CarRepository carRepository;
+
+   
+
+    private MainController showPaginations( Model model, boolean pagination, String url ){
+        model.addAttribute("pagination", pagination );
+        model.addAttribute("paginationUri", url );
+        return this;
+    }
 
     @GetMapping("/")
     public String getIndex( Model model )
@@ -62,18 +74,46 @@ public class MainController
         return this.getIndex( model );
     }
 
-
-
-
-
-
     @GetMapping("/showallcars")
-    public String getShowAllCars(Model model){
+    public String getShowAllCars(Model model, @RequestParam(defaultValue = "0") Integer page){
+        
+        Pageable pageable = PageRequest.of(page, 2 );
+        Page<Car> pageTable = carRepository.findAll( pageable );
+        
+        model.addAttribute( "carDataList", pageTable  );
+        
+        int pageB = 0;
+        pageB = ( pageTable.hasPrevious() ) ? page - 1 : -1 ;
+        
+        int pageN = 0;
+        pageN = ( pageTable.hasNext() ) ? page + 1: -1;
 
-        List<Car> carList = carRepository.findAll();
-        model.addAttribute( "carDataList", carList );
+        model.addAttribute( "pageBack", pageB );
+        model.addAttribute( "pageNext", pageN );
 
-        return this.getIndex( model );
+        return this.showPaginations(model, true, "/showallcars").getIndex( model );
+    }
+
+
+
+    @GetMapping("/showallclients")
+    public String getShowAllClients(Model model, @RequestParam(defaultValue = "0") Integer page){
+        
+        Pageable pageable = PageRequest.of(page, 2 );
+        Page<Client> pageTable = clientRepository.findAll( pageable );
+        
+        model.addAttribute( "clientDataList", pageTable  );
+        
+        int pageB = 0;
+        pageB = ( pageTable.hasPrevious() ) ? page - 1 : -1 ;
+        
+        int pageN = 0;
+        pageN = ( pageTable.hasNext() ) ? page + 1: -1;
+
+        model.addAttribute( "pageBack", pageB );
+        model.addAttribute( "pageNext", pageN );
+
+        return this.showPaginations(model, true, "/showallclients").getIndex( model );
     }
 
 }
