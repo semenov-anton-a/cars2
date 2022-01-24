@@ -1,9 +1,5 @@
 package cars2.cars2.controllers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,34 +21,43 @@ public class MainController
     @Autowired
     private CarRepository carRepository;
 
-    // private List<Car> carList;
-    // private 
-
     @GetMapping("/")
     public String getIndex( Model model )
     {
+        // HTML Title
         model.addAttribute("title", "AutoRegistration");
-
-        // model.addAttribute("clients", clientRepository.findAll() );
-
-        // model.addAttribute("clID", this.carsList);
-
-        System.out.println("HELLo");
+        model.addAttribute("selectClients", clientRepository.findAll() );
+        model.addAttribute("selectCars", carRepository.findAll() );
         return "index";
     }
 
-    // private List<Car> carsList;
-
     @PostMapping( path = "/findcars")
-    public String getCarsByOwner( @RequestParam int clientid )
+    public String getCarsByOwner(Model model, @RequestParam int clientid )
     {
-        // Client cl = clientRepository.getById( clientid );
-        // Car cars = carRepository.
+        if( clientid == 0 ){
+            return this.getIndex( model );
+        }
 
-        // this.carsList = clientid;
-        // System.out.println( cl );
+        Client client = clientRepository.getById(clientid);
+        model.addAttribute("clientName", client );
+        model.addAttribute( "carsListByClient", client.getClientCars() );  
+        
+        return this.getIndex( model );
+    }
 
-        return "redirect:/";
+    @PostMapping( path = "/findclients")
+    public String getClientsByCars(Model model, @RequestParam int carid )
+    {
+        if( carid == 0 ){
+            return this.getIndex( model );
+        }
+        Car car = carRepository.getById(carid);
+
+        System.out.println( car.getReg() );
+
+        model.addAttribute( "carData", car );
+        model.addAttribute( "clients", car.getCarClients() );
+        return this.getIndex( model );
     }
 
 }

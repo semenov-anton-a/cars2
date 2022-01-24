@@ -63,4 +63,15 @@ public class Car extends AbstractPersistable<Integer> {
         this.year   = year;
     }
 
+
+    public boolean isEmpty() {
+        if( this.getVin().isEmpty() ) return true;
+        if( this.getBrand().isEmpty() ) return true;
+        if( this.getModel().isEmpty() ) return true;
+        if( this.getYear().isEmpty() ) return true;
+        if( this.getReg().isEmpty() ) return true;
+
+        return false;
+    }
+
 }

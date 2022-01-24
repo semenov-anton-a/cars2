@@ -3,8 +3,6 @@ package cars2.cars2.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
-import java.util.HashSet;
 
 import javax.transaction.Transactional;
 
@@ -38,6 +36,32 @@ public class TestController {
         
         Integer client_id = 5;
 
+        List<Car> carList = clientRepository.getById(client_id).getClientCars();
+        // System.out.println( carList.get(1).getBrand() );
+
+        model.addAttribute("clients", carList );        
+        // ArrayList<String[]> carArray;
+        
+        
+        
+        // clientRepository.getById(client_id).getClientCars()
+        //     .forEach( car-> {
+            
+        //     // System.out.println( thisCar.get(0) );
+
+        // });
+
+        // System.out.println( client.forEach(car->{}); );
+
+        // // HashMap<String, Integer>
+        // clientRepository.getById(client_id).getClientCars()
+        //     .forEach( car -> {
+
+        //         System.out.println( car.getBrand() );
+        //     });
+
+
+
         /** EXAMPLE 1 */
         // SHOW COUNT FROM DATABASE 
         // System.out.println( clientRepository.getById(client_id).getClientCars().toString() );
@@ -48,10 +72,10 @@ public class TestController {
         // System.out.println( list );
         // System.out.println(Arrays.toString(list.toArray()));
 
-        List<Car> list = clientRepository.getById(client_id).getClientCars();
+        // List<Car> list = clientRepository.getById(cli?ent_id).getClientCars();
         // System.out.println( list );
 
-        list.forEach( System.out::println );
+        // list.forEach( System.out::println );
 
 
 

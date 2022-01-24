@@ -1,6 +1,5 @@
 package cars2.cars2.controllers;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cars2.cars2.ErrorMsg;
 import cars2.cars2.models.Car;
 import cars2.cars2.models.Client;
 import cars2.cars2.repo.CarRepository;
@@ -36,7 +36,6 @@ public class ClientController
         
         model.addAttribute("clients", clientRepository.findAll() );
         model.addAttribute("cars", carRepository.findAll() );
-        System.out.println("HELLo");
         return "addclient";
     }
 
@@ -45,6 +44,10 @@ public class ClientController
         consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE } ) 
     public String addClient( Client data ) 
     {
+        if( data.isEmpty() ){
+            return "redirect:/addclient";
+        }
+
         clientRepository.save( data );
         return "redirect:/addclient";
     }
@@ -53,14 +56,19 @@ public class ClientController
     @PostMapping( path = "/addclient/relations" )
     public String makeRelations( 
         @RequestParam int clientid,
-        @RequestParam (value = "carids[]") List<Integer> carids ) 
+        @RequestParam (value = "carids[]",  defaultValue="-1") List<Integer> carids ) 
     {
+
+        if( clientid == 0 | carids.get(0) == -1) { 
+            new ErrorMsg().msgError( "Request Params not match." );
+            return "redirect:/addclient"; 
+        }
 
         Client client = clientRepository.getById( clientid );
         Collection<Car> cars = carRepository.findAllById( carids );
         
         client.getClientCars().addAll(cars);
-        carRepository.saveAll(cars);
+        // carRepository.saveAll(cars);
      
         return "redirect:/addclient";
     }

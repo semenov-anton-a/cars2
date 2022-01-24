@@ -1,48 +1,43 @@
 <!doctype html>
 <html lang="en">
-    <head th:insert="blocks/htmlHead :: htmlHead"></head>
+
+<head th:insert="blocks/htmlHead :: htmlHead"></head>
+
 <body>
     <div class="container col-md-6">
         <!-- NavMenu -->
         <header th:insert="blocks/navmenu :: navmenu"></header>
-        
+
         <div class="row mt-5">
             <div class="col-md-6">
                 <h5 class="text-center">Cars</h5>
-                <form method="POST" th:action="@{/fowners}">
-                    <select class="form-select" name="carID" aria-label="Default select example">
-                        <option disabled selected hidden>Select Car</option>
-                        <option value="1">Audi QWE-123</option>
-                        <option value="2">Ford ZXC-456</option>
-                        <option value="3">BMW RTY-555</option>
+                <form method="POST" th:action="@{/findclients}">
+                    <select class="form-select" name="carid">
+                        <option value="0" selected>Select Client</option>
+                        <option th:each="selectCars : ${selectCars}" 
+                            th:text="'Reg: ('+${selectCars.Reg} + '), ' + ${selectCars.brand}+' '+${selectCars.model}"
+                            th:value="${selectCars.id}"></option>
                     </select>
-                    <input type="submit" class="btn btn-primary mt-2" value="Search"/>
+                    <!-- <input type="hidden" name="carid" th:value="${woo.id}"/> -->
+                    <input type="submit" class="btn btn-primary mt-2" value="Search" />
                 </form>
-
-                <!-- Result -->
-                <div class="mt-5">
-                    <span>ID : </span><span th:text=${ownersList}></span>
-                </div>
             </div>
             <div class="col-md-6">
                 <h5 class="text-center">Owners</h5>
                 <form method="POST" th:action="@{/findcars}">
                     <select class="form-select" name="clientid">
-                        <option value="0" disabled selected>Select Client</option>
-                        <option 
-                            th:each="clients : ${clients}" 
-                            th:text="${clients.name} + ' ' + ${clients.surname}"
-                            th:value="${clients.id}"></option>
+                        <option value="0" selected>Select Client</option>
+                        <option th:each="selectClients : ${selectClients}" th:text="${selectClients.name} + ' ' + ${selectClients.surname}"
+                            th:value="${selectClients.id}"></option>
                     </select>
-                    <input type="submit" class="btn btn-primary mt-2" value="Search"/>
+                    <input type="submit" class="btn btn-primary mt-2" value="Search" />
                 </form>
-
-                <!-- Result -->
-                <div class="mt-5">
-                  
-                </div>
             </div>
         </div>
-    </div>
+
+        <div th:insert="blocks/carsListByClient :: carsListByClient"></div>
+        <div th:insert="blocks/clientListByCar :: clientListByCar"></div>
+
 </body>
+
 </html>

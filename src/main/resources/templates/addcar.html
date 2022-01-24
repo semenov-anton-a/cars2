@@ -36,6 +36,50 @@
                 </form>
             </div>
 
+
+            <!-- RELATIONSHIP CLIENT && CARs -->
+            <form method="POST" th:action="@{/addcars/relations}">
+                <div class="row mt-5">
+                    <div class="input-group mb-3">
+                        <select class="form-select" name="carid">
+                            <option value="0" selected >Select Car</option>
+                            <option th:each="carData : ${carData}" 
+                                th:text="${carData.reg} + ', ' + ${carData.brand} + ' ' + ${carData.model}"
+                                th:value="${carData.id}"></option>
+                        </select>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Select</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Surname</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="clients : ${clients}">
+                                <td>
+                                    <!-- <form>
+                                    <input type="hidden" name="carid" th:value=${cars.id}>
+                                    <input class="btn btn-sm btn-primary"
+                                    type="submit" value="Add"/>
+                                </form> -->
+                                    <input type="checkbox" name="clients[]" th:value=${clients.id}>
+                                </td>
+                                <td th:text="${clients.id}"></td>
+                                <td th:text="${clients.name}"></td>
+                                <td th:text="${clients.surname}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-6 offset-3">
+                        <input type="submit" class="col-md-12 btn btn-primary mt-2" value="Save">
+                    </div>
+                </div>
+            </form>
+
         </div>
 
     </div>

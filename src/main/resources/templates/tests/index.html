@@ -13,7 +13,7 @@
 <ul>
     <li 
         th:each="clients : ${clients}" 
-        th:text="${clients.name} + ' ' + ${clients.id}"
+        th:text="${clients.getModel()} + ' ' + ${ clients.getBrand() }"
         >
     </li>
 </ul>
