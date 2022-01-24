@@ -3,12 +3,12 @@ package cars2.cars2.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import cars2.cars2.models.Car;
@@ -27,6 +27,66 @@ public class TestController {
 
     @GetMapping("/tests")
     public String getTests() {
+        return "/tests/index";
+    }
+
+    
+    @GetMapping("/tests/getclientcar")
+    public String getclientcar( Model model ) {
+        
+        Integer client_id = 5;
+
+        List<Car> carList = clientRepository.getById(client_id).getClientCars();
+        // System.out.println( carList.get(1).getBrand() );
+
+        model.addAttribute("clients", carList );        
+        // ArrayList<String[]> carArray;
+        
+        
+        
+        // clientRepository.getById(client_id).getClientCars()
+        //     .forEach( car-> {
+            
+        //     // System.out.println( thisCar.get(0) );
+
+        // });
+
+        // System.out.println( client.forEach(car->{}); );
+
+        // // HashMap<String, Integer>
+        // clientRepository.getById(client_id).getClientCars()
+        //     .forEach( car -> {
+
+        //         System.out.println( car.getBrand() );
+        //     });
+
+
+
+        /** EXAMPLE 1 */
+        // SHOW COUNT FROM DATABASE 
+        // System.out.println( clientRepository.getById(client_id).getClientCars().toString() );
+        
+
+        /** EXAMPLE 2 */
+        // Object[] list =  clientRepository.getById(client_id).getClientCars().toArray();
+        // System.out.println( list );
+        // System.out.println(Arrays.toString(list.toArray()));
+
+        // List<Car> list = clientRepository.getById(cli?ent_id).getClientCars();
+        // System.out.println( list );
+
+        // list.forEach( System.out::println );
+
+
+
+        /** ================ */
+
+        // WORK IN DATA BASE
+        // Client client = clientRepository.getById(client_id);
+        // System.out.println( client.getClientCars() );
+        
+        // System.out.println("HELLO");
+
         return "/tests/index";
     }
 

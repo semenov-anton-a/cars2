@@ -46,6 +46,13 @@ public class Client extends AbstractPersistable<Integer>{
         this.surname = surname;
     }
 
+
+    public boolean isEmpty() {
+
+        if( this.getName().isEmpty() ) return true;
+        if( this.getSurname().isEmpty() ) return true;
+        return false;
+    }
 }
 
 

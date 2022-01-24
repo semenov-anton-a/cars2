@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
-    <head th:insert="blocks/htmlHead :: htmlHead"></head>
+
+<head th:insert="blocks/htmlHead :: htmlHead"></head>
+
 <body>
     <div class="container col-md-6">
         <!-- NavMenu -->
         <header th:insert="blocks/navmenu :: navmenu"></header>
-        
+
         <div class="row mt-5">
             <div class="col-md-12">
                 <h5 class="text-center">Add Client</h5>
@@ -21,57 +23,56 @@
             </div>
 
 
-        <!-- RELATIONSHIP CLIENT && CARs -->
-        <form method="POST" th:action="@{/addclient/relations}">
-            <div class="row mt-5">
-                <div class="input-group mb-3">
-                    <select class="form-select" name="clientid">
-                        <option value="0" disabled selected>Select Client</option>
-                        <option 
-                            th:each="clients : ${clients}" 
-                            th:text="${clients.name} + ' ' + ${clients.surname}"
-                            th:value="${clients.id}"></option>
-                    </select>
-                </div>
-    
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Select</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">RegNum</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Year</th>
-                            <th scope="col">VINCode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cars : ${cars}">
-                            <td>
-                                <!-- <form>
+            <!-- RELATIONSHIP CLIENT && CARs -->
+            <form method="POST" th:action="@{/addclient/relations}">
+                <div class="row mt-5">
+                    <div class="input-group mb-3">
+                        <select class="form-select" name="clientid">
+                            <option value="0" selected>Select Client</option>
+                            <option th:each="clients : ${clients}" th:text="${clients.name} + ' ' + ${clients.surname}"
+                                th:value="${clients.id}"></option>
+                        </select>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Select</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">RegNum</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">VINCode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cars : ${cars}">
+                                <td>
+                                    <!-- <form>
                                     <input type="hidden" name="carid" th:value=${cars.id}>
                                     <input class="btn btn-sm btn-primary"
                                     type="submit" value="Add"/>
                                 </form> -->
-                                <input type="checkbox" name="carids[]" th:value=${cars.id}>
-                            </td>
-                            <td th:text="${cars.id}"></td>
-                            <td th:text="${cars.reg}"></td>
-                            <td th:text="${cars.brand}"></td>
-                            <td th:text="${cars.model}"></td>
-                            <td th:text="${cars.year}"></td>
-                            <td th:text="${cars.vin}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="col-md-6 offset-3">
-                    <input type="submit" class="col-md-12 btn btn-primary mt-2" value="Save">
+                                    <input type="checkbox" name="carids[]" th:value=${cars.id}>
+                                </td>
+                                <td th:text="${cars.id}"></td>
+                                <td th:text="${cars.reg}"></td>
+                                <td th:text="${cars.brand}"></td>
+                                <td th:text="${cars.model}"></td>
+                                <td th:text="${cars.year}"></td>
+                                <td th:text="${cars.vin}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-md-6 offset-3">
+                        <input type="submit" class="col-md-12 btn btn-primary mt-2" value="Save">
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
 
     </div>
 </body>
+
 </html>
