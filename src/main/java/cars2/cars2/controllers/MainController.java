@@ -28,6 +28,8 @@ public class MainController
     @Autowired
     private CarRepository carRepository;
 
+
+    private Integer countOfPage = 4;
    
 
     private MainController showPaginations( Model model, boolean pagination, String url ){
@@ -92,7 +94,7 @@ public class MainController
     @GetMapping("/showallcars")
     public String getShowAllCars(Model model, @RequestParam(defaultValue = "0") Integer page){
         
-        Pageable pageable = PageRequest.of(page, 2 );
+        Pageable pageable = PageRequest.of(page, this.countOfPage );
         Page<Car> pageTable = carRepository.findAll( pageable );
         
         model.addAttribute( "carDataList", pageTable  );
@@ -112,7 +114,7 @@ public class MainController
     @GetMapping("/showallclients")
     public String getShowAllClients(Model model, @RequestParam(defaultValue = "0") Integer page){
         
-        Pageable pageable = PageRequest.of(page, 2 );
+        Pageable pageable = PageRequest.of(page, this.countOfPage );
         Page<Client> pageTable = clientRepository.findAll( pageable );
         
         model.addAttribute( "clientDataList", pageTable  );
